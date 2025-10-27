@@ -1775,16 +1775,16 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                        <<Abstract>>                                         │
 │                     EdgeServerManager                                       │
-│  (edu.boun.edgecloudsim.edge_server)                                       │
+│  (edu.boun.edgecloudsim.edge_server)                                        │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│  # localDatacenters: List<Datacenter>                                      │
-│  # vmList: List<List<EdgeVM>>                                              │
+│  # localDatacenters: List<Datacenter>                                       │
+│  # vmList: List<List<EdgeVM>>                                               │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  + initialize(): void                                                       │
-│  + getVmAllocationPolicy(...): VmAllocationPolicy [abstract]               │
+│  + getVmAllocationPolicy(...): VmAllocationPolicy [abstract]                │
 │  + startDatacenters(): void [abstract]                                      │
 │  + terminateDatacenters(): void [abstract]                                  │
-│  + createVmList(brokerId: int): void [abstract]                            │
+│  + createVmList(brokerId: int): void [abstract]                             │
 │  + getAvgUtilization(): double [abstract]                                   │
 └─────────────────────────────────────────────────────────────────────────────┘
                                 △
@@ -1792,21 +1792,21 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
                                 │
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                     GpuEdgeServerManager                                    │
-│  (edu.boun.edgecloudsim.edge_server)                                       │
+│  (edu.boun.edgecloudsim.edge_server)                                        │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  - hostIdCounter: int                                                       │
 │  - vmIdCounter: int                                                         │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  + initialize(): void                                                       │
-│  + getVmAllocationPolicy(...): VmAllocationPolicy                          │
+│  + getVmAllocationPolicy(...): VmAllocationPolicy                           │
 │  + startDatacenters(): void                                                 │
 │  + terminateDatacenters(): void                                             │
-│  + createVmList(brokerId: int): void                                       │
+│  + createVmList(brokerId: int): void                                        │
 │  + getAvgUtilization(): double                                              │
-│  - createGpuDatacenter(...): Datacenter                                    │
-│  - createGpuHosts(...): List<GpuEdgeHost>                                  │
-│  - createGpuList(...): List<Gpu>                                           │
-│  - createPeList(...): List<Pe>                                             │
+│  - createGpuDatacenter(...): Datacenter                                     │
+│  - createGpuHosts(...): List<GpuEdgeHost>                                   │
+│  - createGpuList(...): List<Gpu>                                            │
+│  - createPeList(...): List<Pe>                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
                     │ creates
                     ├──────────────────┬────────────────────┐
@@ -1857,7 +1857,7 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
 │  - gpuList: List<Gpu>                                        │
 │  - gpuProvisioner: GpuProvisioner                            │
 ├──────────────────────────────────────────────────────────────┤
-│  + GpuEdgeHost(id, ..., gpuList, gpuProvisioner)            │
+│  + GpuEdgeHost(id, ..., gpuList, gpuProvisioner)             │
 │  + getGpuList(): List<Gpu>                                   │
 │  + getGpuProvisioner(): GpuProvisioner                       │
 │  + allocateGpuForVm(vm, gpu): boolean                        │
@@ -1875,7 +1875,7 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
                     │                                   ▼
                     │                    ┌────────────────────────────────┐
                     │                    │            Gpu                 │
-                    │                    │  (edu.boun.edgecloudsim.      │
+                    │                    │  (edu.boun.edgecloudsim.       │
                     │                    │   edge_server)                 │
                     │                    ├────────────────────────────────┤
                     │                    │  - id: int                     │
@@ -1898,9 +1898,9 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
                     │                    │  + allocateMemory(size): bool  │
                     │                    │  + calculateExecutionTime(...) │
                     │                    └────────────────────────────────┘
-                    │ uses                                 △
-                    │                                      │ manages
-                    ▼                                      │
+                    │ uses                                △
+                    │                                     │ manages
+                    ▼                                     │
 ┌────────────────────────────────────────┐                │
 │    <<Interface>>                       │                │
 │    GpuProvisioner                      │                │
@@ -1912,9 +1912,9 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
 │  + getAvailableGpu(): Gpu              │                │
 │  + getGpuList(): List<Gpu>             │                │
 └────────────────────────────────────────┘                │
-                △                                          │
-                │ implements                               │
-                │                                          │
+                △                                         │
+                │ implements                              │
+                │                                         │
 ┌────────────────────────────────────────────────────┐    │
 │         GpuProvisionerSimple                       │    │
 │   (edu.boun.edgecloudsim.edge_server)              │    │
@@ -1972,7 +1972,7 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
 │  - requiresGpu: boolean                                  │
 │  - gpuAllocationMode: GpuAllocationMode                  │
 ├──────────────────────────────────────────────────────────┤
-│  + GpuEdgeVM(id, ..., gpuScheduler, requiresGpu)        │
+│  + GpuEdgeVM(id, ..., gpuScheduler, requiresGpu)         │
 │  + setGpu(gpu): void                                     │
 │  + getGpu(): Gpu                                         │
 │  + hasGpu(): boolean                                     │
@@ -2101,7 +2101,7 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
 │  - gpuStartTime: double                                  │
 │  - gpuFinishTime: double                                 │
 ├──────────────────────────────────────────────────────────┤
-│  + GpuTask(deviceId, id, ..., gpuLength, ...)           │
+│  + GpuTask(deviceId, id, ..., gpuLength, ...)            │
 │  + getGpuLength(): long                                  │
 │  + getGpuInputData(): long                               │
 │  + getRequiredGpuMemory(): long                          │
@@ -2167,7 +2167,7 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
 │               edu.boun.edgecloudsim.edge_server                    │
 ├────────────────────────────────────────────────────────────────────┤
 │  Classes:                                                          │
-│    • EdgeServerManager (abstract)                                 │
+│    • EdgeServerManager (abstract)                                  │
 │    • GpuEdgeServerManager                                          │
 │    • EdgeHost                                                      │
 │    • GpuEdgeHost                                                   │
@@ -2242,7 +2242,7 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
                 │ contains       │ has             │
                 │ 1..*           │ 0..1            │ uses
                 ▼                ▼                 │
-              Gpu ◄─────────────┘                 │
+              Gpu ◄─────────────┘                  │
                 │                                  │
                 │ managed by                       │
                 ▼                                  │
@@ -2261,10 +2261,10 @@ private boolean allocateGpuForVm(GpuEdgeHost host, GpuEdgeVM vm)
               △                                      │
               │ implemented by                       │ extends
               │                                      │
-    GpuCloudletScheduler                          Task
-        TimeShared                                  │ extends
-                                                    │
-                                                 Cloudlet
+    GpuCloudletScheduler                            Task
+        TimeShared                                   │ extends
+                                                     │
+                                                  Cloudlet
 ```
 
 ---
@@ -2657,17 +2657,17 @@ public interface GpuCloudletScheduler {
 ### 4.1 Fluxo: Criação de Infraestrutura GPU
 
 ```
-┌────────┐   ┌────────────┐   ┌──────────────────────┐   ┌─────────────┐   ┌───────────┐   ┌──────┐
-│MainApp │   │SimManager  │   │GpuEdgeServerManager  │   │GpuEdgeHost  │   │GpuEdgeVM  │   │Gpu   │
-└───┬────┘   └──────┬─────┘   └──────────┬───────────┘   └──────┬──────┘   └─────┬─────┘   └───┬──┘
+┌────────┐    ┌────────────┐    ┌──────────────────────┐   ┌─────────────┐    ┌───────────┐  ┌──────┐
+│MainApp │    │SimManager  │    │GpuEdgeServerManager  │   │GpuEdgeHost  │    │GpuEdgeVM  │  │Gpu   │
+└───┬────┘    └──────┬─────┘    └──────────┬───────────┘   └──────┬──────┘    └─────┬─────┘  └───┬──┘
     │                │                     │                      │                 │            │
     │ new SimManager(factory)              │                      │                 │            │
     │───────────────>│                     │                      │                 │            │
     │                │                     │                      │                 │            │
-    │                │ factory.getEdgeServerManager()            │                 │            │
+    │                │ factory.getEdgeServerManager()             │                 │            │
     │                │────────────────────>│                      │                 │            │
     │                │                     │                      │                 │            │
-    │                │    new GpuEdgeServerManager()             │                 │            │
+    │                │    new GpuEdgeServerManager()              │                 │            │
     │                │<────────────────────│                      │                 │            │
     │                │                     │                      │                 │            │
     │ startSimulation()                    │                      │                 │            │
@@ -2684,13 +2684,13 @@ public interface GpuCloudletScheduler {
     │                │                     │ createGpuHosts()     │                 │            │
     │                │                     │──────────┐           │                 │            │
     │                │                     │          │           │                 │            │
-    │                │                     │          │ createGpuList()              │            │
-    │                │                     │          │──────────────────────────────────────────>│
+    │                │                     │          │ createGpuList()             │            │
+    │                │                     │          │─────────────────────────────────────────>│
     │                │                     │          │           │                 │            │
     │                │                     │          │           │                 │ new Gpu()  │
     │                │                     │          │           │                 │<───────────│
     │                │                     │          │           │                 │            │
-    │                │                     │          │<──────────────────────────────────────────│
+    │                │                     │          │<─────────────────────────────────────────│
     │                │                     │          │           │                 │            │
     │                │                     │          │ new GpuEdgeHost(gpuList)    │            │
     │                │                     │          │──────────>│                 │            │
@@ -2750,62 +2750,62 @@ public interface GpuCloudletScheduler {
 ### 4.2 Fluxo: Alocação de GPU para VM
 
 ```
-┌──────────────────────────┐   ┌───────────────────────┐   ┌─────────────┐   ┌──────┐
-│GpuEdgeVmAllocation       │   │GpuEdgeHost            │   │GpuProvisioner│   │Gpu   │
-│Policy_Custom             │   │                       │   │              │   │      │
-└──────────┬───────────────┘   └───────────┬───────────┘   └──────┬───────┘   └───┬──┘
+┌──────────────────────────┐   ┌───────────────────────┐   ┌──────────────┐  ┌──────┐
+│GpuEdgeVmAllocation       │   │GpuEdgeHost            │   │GpuProvisioner│  │Gpu   │
+│Policy_Custom             │   │                       │   │              │  │      │
+└──────────┬───────────────┘   └───────────┬───────────┘   └──────┬───────┘  └───┬──┘
            │                               │                      │              │
            │ allocateHostForVm(vm)         │                      │              │
            │──────────┐                    │                      │              │
-           │          │ [Verifica se VM   │                      │              │
+           │          │ [Verifica se VM    │                      │              │
            │          │  requer GPU]       │                      │              │
            │<─────────┘                    │                      │              │
            │                               │                      │              │
-           │ findSuitableHostForVm(vm)    │                      │              │
+           │ findSuitableHostForVm(vm)     │                      │              │
            │──────────┐                    │                      │              │
            │          │                    │                      │              │
-           │          │ hasAvailableGpu() │                      │              │
-           │          │──────────────────>│                      │              │
+           │          │ hasAvailableGpu()  │                      │              │
+           │          │───────────────────>│                      │              │
            │          │                    │                      │              │
            │          │                    │ hasAvailableGpu()    │              │
            │          │                    │─────────────────────>│              │
            │          │                    │                      │              │
-           │          │                    │                      │ [Verifica   │
-           │          │                    │                      │  GPUs       │
+           │          │                    │                      │ [Verifica    │
+           │          │                    │                      │  GPUs        │
            │          │                    │                      │  disponíveis]│
-           │          │                    │                      │──────┐      │
-           │          │                    │                      │      │      │
-           │          │                    │                      │<─────┘      │
+           │          │                    │                      │──────┐       │
+           │          │                    │                      │      │       │
+           │          │                    │                      │<─────┘       │
            │          │                    │                      │              │
            │          │                    │<─────────────────────│              │
            │          │                    │                      │              │
-           │          │<──────────────────│                      │              │
+           │          │<───────────────────│                      │              │
            │<─────────┘                    │                      │              │
            │  [Host adequado encontrado]   │                      │              │
            │                               │                      │              │
            │ allocateGpuForVm(host, vm)    │                      │              │
            │──────────┐                    │                      │              │
            │          │                    │                      │              │
-           │          │ getAvailableGpu() │                      │              │
-           │          │──────────────────>│                      │              │
+           │          │ getAvailableGpu()  │                      │              │
+           │          │───────────────────>│                      │              │
            │          │                    │                      │              │
            │          │                    │ getAvailableGpu()    │              │
            │          │                    │─────────────────────>│              │
            │          │                    │                      │              │
-           │          │                    │                      │ [Retorna 1ª │
+           │          │                    │                      │ [Retorna 1ª  │
            │          │                    │                      │  GPU livre]  │
-           │          │                    │                      │──────┐      │
-           │          │                    │                      │      │      │
-           │          │                    │                      │<─────┘      │
+           │          │                    │                      │──────┐       │
+           │          │                    │                      │      │       │
+           │          │                    │                      │<─────┘       │
            │          │                    │                      │              │
            │          │                    │<─────────────────────│              │
            │          │                    │                      │              │
-           │          │<──────────────────│                      │              │
+           │          │<───────────────────│                      │              │
            │          │                    │                      │              │
-           │          │ allocateGpuForVm(vm, gpu)                │              │
-           │          │──────────────────>│                      │              │
+           │          │ allocateGpuForVm(vm, gpu)                 │              │
+           │          │───────────────────>│                      │              │
            │          │                    │                      │              │
-           │          │                    │ allocateGpuForVm(vm, gpu)          │
+           │          │                    │ allocateGpuForVm(vm, gpu)           │
            │          │                    │─────────────────────>│              │
            │          │                    │                      │              │
            │          │                    │                      │ isAvailable()│
@@ -2823,7 +2823,7 @@ public interface GpuCloudletScheduler {
            │          │                    │<─────────────────────│              │
            │          │                    │  true                │              │
            │          │                    │                      │              │
-           │          │<──────────────────│                      │              │
+           │          │<───────────────────│                      │              │
            │          │  true              │                      │              │
            │          │                    │                      │              │
            │          │ vm.setGpu(gpu)     │                      │              │
@@ -2856,10 +2856,10 @@ public interface GpuCloudletScheduler {
 ### 4.3 Fluxo: Execução de GpuTask
 
 ```
-┌──────────────────┐   ┌──────────────┐   ┌────────────────────┐   ┌──────────┐   ┌─────┐
-│MobileDevice      │   │GpuEdgeVM     │   │GpuCloudletScheduler│   │GpuTask   │   │Gpu  │
-│Manager           │   │              │   │TimeShared          │   │          │   │     │
-└─────────┬────────┘   └──────┬───────┘   └─────────┬──────────┘   └─────┬────┘   └──┬──┘
+┌──────────────────┐   ┌──────────────┐    ┌────────────────────┐   ┌──────────┐   ┌─────┐
+│MobileDevice      │   │GpuEdgeVM     │    │GpuCloudletScheduler│   │GpuTask   │   │Gpu  │
+│Manager           │   │              │    │TimeShared          │   │          │   │     │
+└─────────┬────────┘   └──────┬───────┘    └─────────┬──────────┘   └─────┬────┘   └──┬──┘
           │                   │                      │                    │           │
           │ submitTask(gpuTask)                      │                    │           │
           │──────────────────>│                      │                    │           │
@@ -2893,7 +2893,7 @@ public interface GpuCloudletScheduler {
           │                   │ updateGpuTaskProcessing(currentTime)      │           │
           │                   │─────────────────────>│                    │           │
           │                   │                      │                    │           │
-          │                   │                      │ [Calcula delta    │           │
+          │                   │                      │ [Calcula delta     │           │
           │                   │                      │  de tempo]         │           │
           │                   │                      │──────────┐         │           │
           │                   │                      │          │         │           │
@@ -2907,7 +2907,7 @@ public interface GpuCloudletScheduler {
           │                   │                      │                    │           │
           │                   │                      │ [Para cada tarefa, │           │
           │                   │                      │  calcula trabalho  │           │
-          │                   │                      │  realizado]         │           │
+          │                   │                      │  realizado]        │           │
           │                   │                      │──────────┐         │           │
           │                   │                      │          │         │           │
           │                   │                      │<─────────┘         │           │
@@ -2920,7 +2920,7 @@ public interface GpuCloudletScheduler {
           │                   │                      │ finishGpuTask(gpuTask)         │
           │                   │                      │──────────┐         │           │
           │                   │                      │          │         │           │
-          │                   │                      │          │ setGpuFinishTime() │
+          │                   │                      │          │ setGpuFinishTime()  │
           │                   │                      │          │────────>│           │
           │                   │                      │          │         │           │
           │                   │                      │          │ setActualGpuUtilization()
@@ -2986,7 +2986,7 @@ public interface GpuCloudletScheduler {
          │                        │                      │────────────────>│              │
          │                        │                      │                 │              │
          │                        │                      │                 │ [Encontra GPU│
-         │                        │                      │                 │  alocada]     │
+         │                        │                      │                 │  alocada]    │
          │                        │                      │                 │──────┐       │
          │                        │                      │                 │      │       │
          │                        │                      │                 │<─────┘       │
@@ -2996,9 +2996,9 @@ public interface GpuCloudletScheduler {
          │                        │                      │                 │              │
          │                        │                      │                 │              │
          │                        │                      │                 │ [GPU fields: │
-         │                        │                      │                 │  allocatedVm=null│
-         │                        │                      │                 │  utilization=0│
-         │                        │                      │                 │  usedMemory=0]│
+         │                        │                      │                 │  allocatedVm=null
+         │                        │                      │                 │  utilization=0
+         │                        │                      │                 │  usedMemory=0]
          │                        │                      │                 │<──────┐      │
          │                        │                      │                 │       │      │
          │                        │                      │                 │<──────┘      │
@@ -5033,6 +5033,7 @@ if (!host.hasAvailableGpu()) {
 
 2. **CloudSim:**
    - Calheiros, R. N., Ranjan, R., Beloglazov, A., De Rose, C. A., & Buyya, R. (2011). CloudSim: a toolkit for modeling and simulation of cloud computing environments and evaluation of resource provisioning algorithms. *Software: Practice and experience*, 41(1), 23-50.
+   - GitHub: https://github.com/Cloudslab/cloudsim
 
 3. **GPU Architecture:**
    - NVIDIA CUDA C Programming Guide: https://docs.nvidia.com/cuda/cuda-c-programming-guide/
