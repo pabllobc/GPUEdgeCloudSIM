@@ -61,8 +61,8 @@ Este documento apresenta a **Fase 4 completa de Integração e Testes de Sistema
 │                   GpuScenarioFactory                            │
 │            (Factory Pattern for GPU Components)                 │
 ├─────────────────────────────────────────────────────────────────┤
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐│
-│  │ GpuLoadGenerator│  │GpuEdgeOrchestrator│ │ GpuNetworkModel ││
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
+│  │ GpuLoadGenerator│  │GpuEdgeOrchestrator│ │ GpuNetworkModel │  │
 │  │     Model       │  │                  │  │                 ││
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘│
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐│
@@ -1071,12 +1071,3 @@ v1.3 (Q3 2026):
 [5] Redmon, J., & Farhadi, A. (2018). YOLOv3: An incremental improvement. *arXiv preprint arXiv:1804.02767*.
 
 ---
-
-**Documento Completo Gerado em:** 23 de Outubro de 2025  
-**Versão do GpuEdgeCloudSim:** v1.0  
-**Autor:** Pabllo Borges Cardoso  
-**Contato:** pabllo.cardoso@example.edu
-
----
-
-**✅ Fase 4 Completada com Sucesso! ✅**
