@@ -1,10 +1,5 @@
 # 🚀 GpuEdgeCloudSim v1.0
 
-[![Java](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj-OLgwsuWSEdozZ3efDGm9HFl1iALMKNzwLnzCa-SIbHfwN7Ib2QgZNA8MwFjVp6Wl2MkG4C-6RYwCPfYvxcKDFjpXlNfpQNSaoSjt2TlPjJ_-k6APqE2rDWqd-yrh_1hjB8EBQN1BPYzc/s400/di-logo-java-orange.png)
-[![EdgeCloudSim](https://opengraph.githubassets.com/1dce056539b3e3a63379fafef02fd2049f8dd4b059b5929bca13fd74367e14aa/CagataySonmez/EdgeCloudSim)
-[![License](https://i.ytimg.com/vi/4cgpu9L2AE8/maxresdefault.jpg)
-[![Status](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj1ilTgaNztubG009wqi-xQn4VeNsAX58VJxYOwPDF-8gMybC1V3RB1EzdGmf917yPBuwTuvl99CHIri4VUnGy0lI3gcpEFtiHIwaGgebrtGfORfth9L18XIan25zQecGfCLs-j2a6SyKFMKo8LB7rCoWDimwpuiklxQ2pYmPFSj4txGnv-iufP-oUOxg/w1200-h630-p-k-no-nu/TrustSec.JPG)
-
 **Extensão híbrida do EdgeCloudSim com suporte a aceleração GPU na camada de Edge Servers**
 
 > *Uma simulação de eventos discretos (DES) para avaliar desempenho, eficiência energética e políticas de escalonamento em ambientes Edge-Cloud heterogêneos com recursos CPU+GPU.*
@@ -30,7 +25,7 @@
 
 ## 🎯 Visão Geral
 
-O **GpuEdgeCloudSim v1.0** é uma extensão inovadora do [EdgeCloudSim](https://github.com/CagataySonmez/EdgeCloudSim) que integra suporte completo a **recursos GPU** na camada de **Edge Servers**, permitindo simulação realística de:
+O **GpuEdgeCloudSim v1.0** é uma extensão do [EdgeCloudSim](https://github.com/CagataySonmez/EdgeCloudSim) que integra suporte completo a **recursos GPU** na camada de **Edge Servers**, permitindo simulação realística de:
 
 - ✅ Offloading inteligente de tarefas computacionalmente intensivas para GPU
 - ✅ Políticas de escalonamento híbrido CPU+GPU
@@ -38,9 +33,9 @@ O **GpuEdgeCloudSim v1.0** é uma extensão inovadora do [EdgeCloudSim](https://
 - ✅ Modelagem de consumo energético e eficiência computacional
 - ✅ Cenários científicos validados para aplicações de ML, AR/VR, Video Processing e IoT
 
-### 🎓 Contexto Acadêmico
+### 🎓 Contexto
 
-Desenvolvido como parte de pesquisa científica em **Edge Computing** e **Computação Heterogênea**, o GpuEdgeCloudSim foi projetado para:
+Desenvolvido como parte de pesquisa científica em **Edge Computing**, o GpuEdgeCloudSim foi projetado para:
 
 1. **Pesquisadores:** Avaliar políticas de offloading e escalonamento GPU-aware
 2. **Desenvolvedores:** Prototipar arquiteturas edge híbridas CPU+GPU
@@ -88,30 +83,30 @@ Desenvolvido como parte de pesquisa científica em **Edge Computing** e **Comput
 │                      GpuEdgeCloudSim v1.0                       │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌───────────────┐     ┌──────────────┐     ┌──────────────┐ │
-│  │ Mobile Device │────▶│ Edge Server  │────▶│ Cloud Server │ │
-│  │   (Client)    │     │  CPU + GPU   │     │   (Backup)   │ │
-│  └───────────────┘     └──────────────┘     └──────────────┘ │
-│         │                      │                     │         │
-│         │                      │                     │         │
-│         ▼                      ▼                     ▼         │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │           GpuEdgeOrchestrator (Decisão Híbrida)         │ │
-│  │  ┌────────┐  ┌────────┐  ┌────────┐  ┌────────┐        │ │
-│  │  │CPU FIFO│  │GPU FIFO│  │Hybrid  │  │Priority│        │ │
-│  │  └────────┘  └────────┘  └────────┘  └────────┘        │ │
-│  └──────────────────────────────────────────────────────────┘ │
+│  ┌───────────────┐     ┌──────────────┐     ┌──────────────┐    │
+│  │ Mobile Device │────▶│ Edge Server  │────▶│ Cloud Server │    │
+│  │   (Client)    │     │  CPU + GPU   │     │   (Backup)   │    │
+│  └───────────────┘     └──────────────┘     └──────────────┘    │
+│         │                      │                     │          │
+│         │                      │                     │          │
+│         ▼                      ▼                     ▼          │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │           GpuEdgeOrchestrator (Decisão Híbrida)          │   │
+│  │  ┌────────┐  ┌────────┐  ┌────────┐  ┌────────┐          │   │
+│  │  │CPU FIFO│  │GPU FIFO│  │Hybrid  │  │Priority│          │   │
+│  │  └────────┘  └────────┘  └────────┘  └────────┘          │   │
+│  └──────────────────────────────────────────────────────────┘   │
 │                                                                 │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │                   Recursos Edge Server                    │ │
-│  │  ┌─────────────┐              ┌─────────────┐           │ │
-│  │  │  GpuEdgeVM  │              │  GpuEdgeVM  │           │ │
-│  │  │  ┌───┐┌───┐ │              │  ┌───┐┌───┐ │           │ │
-│  │  │  │CPU││GPU│ │              │  │CPU││GPU│ │           │ │
-│  │  │  └───┘└───┘ │              │  └───┘└───┘ │           │ │
-│  │  └─────────────┘              └─────────────┘           │ │
-│  │         GpuEdgeHost (8 CPUs + 2 GPUs)                    │ │
-│  └──────────────────────────────────────────────────────────┘ │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │                   Recursos Edge Server                   │   │
+│  │  ┌─────────────┐              ┌─────────────┐            │   │
+│  │  │  GpuEdgeVM  │              │  GpuEdgeVM  │            │   │
+│  │  │  ┌───┐┌───┐ │              │  ┌───┐┌───┐ │            │   │
+│  │  │  │CPU││GPU│ │              │  │CPU││GPU│ │            │   │
+│  │  │  └───┘└───┘ │              │  └───┘└───┘ │            │   │
+│  │  └─────────────┘              └─────────────┘            │   │
+│  │         GpuEdgeHost (8 CPUs + 2 GPUs)                    │   │
+│  └──────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -364,7 +359,7 @@ O GpuEdgeCloudSim inclui **4 cenários científicos validados**:
 4. **[Fase 4 - Integração e Testes](docs/fases/GpuEdgeCloudSim_Fase4_Integracao_Testes.md)**
    - Testes de integração end-to-end
    - Validação de cenários científicos
-   - Documentação de APIs
+   - Documentação
 
 ### Análises Científicas
 
@@ -392,14 +387,6 @@ O GpuEdgeCloudSim inclui **4 cenários científicos validados**:
 - **[EdgeCloudSim Modelling Guide](docs/guides/EdgeCloudSim_ModellingGuide.md)**
   - Guia oficial do EdgeCloudSim
   - Arquitetura e componentes principais
-
-- **[PERSONA - Desenvolvedor EdgeCloudSim](docs/guides/PERSONA.MD)**
-  - Perfil técnico e competências
-  - Filosofia de desenvolvimento
-
-- **[Super Prompt - GpuEdgeCloudSim](docs/guides/super_prompt_gpuedgecloudsim.md)**
-  - Prompt estruturado para desenvolvimento
-  - Metodologia de implementação
 
 ---
 
@@ -503,8 +490,8 @@ GPUEdgeCloudSIM/
 EdgeCloudSim Architect & Java Developer Advanced
 
 - 🌐 GitHub: [@pabllobc](https://github.com/pabllobc)
-- 📧 Email: [contato disponível no perfil GitHub]
-- 🎓 Área: Edge Computing, Computação Heterogênea, Sistemas Distribuídos
+- 📧 Email: [pablloborges@discente.ufg.br]
+- 🎓 Área: Edge Computing
 
 ### Competências
 
@@ -522,15 +509,14 @@ Este projeto é licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICE
 
 ### Permissões
 
-✅ Uso comercial  
+✅ Uso acadêmico
 ✅ Modificação  
 ✅ Distribuição  
 ✅ Uso privado  
 
 ### Limitações
 
-❌ Sem garantias  
-❌ Sem responsabilidade  
+❌ Entregue da forma que está  
 
 ---
 
