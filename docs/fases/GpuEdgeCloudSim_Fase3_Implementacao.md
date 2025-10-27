@@ -824,25 +824,36 @@ Criar/atualizar `edge_devices.xml` com especificações GPU (ver exemplo na seç
 ## 👤 Autor
 
 **Pabllo Borges Cardoso**  
-🎓 Pesquisador em Edge Computing e GPU Acceleration  
-📧 Email: [seu-email@example.com]  
-🔗 GitHub: [seu-github]  
+EdgeCloudSim Architect & Java Developer Advanced
 
-### Contribuições
+- 🌐 GitHub: [@pabllobc](https://github.com/pabllobc)
+- 📧 Email: [pablloborges@discente.ufg.br]
+- 🎓 Área: Edge Computing
 
-Este projeto faz parte do **GpuEdgeCloudSim v1.0**, uma extensão GPU do EdgeCloudSim desenvolvida como parte de pesquisa acadêmica em computação de borda GPU-acelerada.
+### Competências
+
+- Simulação por Eventos Discretos (DES)
+- Arquitetura Modular Java
+- Offloading Inteligente GPU-aware
+- Modelagem de Latência e QoS
+- Análise Estatística e Científica
 
 ---
 
 ## 📄 Licença
 
-Este código segue a mesma licença do EdgeCloudSim:
+Este projeto é licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-```
-Licence: GPL - http://www.gnu.org/copyleft/gpl.html
-Copyright (c) 2025, GpuEdgeCloudSim Project
-Based on EdgeCloudSim (c) 2017, Bogazici University, Istanbul, Turkey
-```
+### Permissões
+
+✅ Uso acadêmico
+✅ Modificação  
+✅ Distribuição  
+✅ Uso privado  
+
+### Limitações
+
+❌ Entregue da forma que está  
 
 ---
 
