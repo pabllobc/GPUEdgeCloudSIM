@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<!--
+  GpuEdgeCloudSim v1.0 - Edge Devices Configuration
+  
+  This file defines the GPU-enabled edge computing infrastructure including:
+  - Edge datacenters with GPU-equipped hosts
+  - GPU specifications (NVIDIA T4, A100, etc.)
+  - VM configurations with GPU requirements
+  - Geographic locations and network topology
+  
+  Author: Pabllo Borges Cardoso
+  Date: October 23, 2025
+-->
+
+<edge_devices>
+	
+	<!-- =========================================== -->
+	<!-- DATACENTER 1: Edge Server with NVIDIA T4   -->
+	<!-- Location: Downtown Area (High User Density) -->
+	<!-- =========================================== -->
+	<datacenter arch="x86" os="Linux" vmm="Xen">
+		<costPerBw>0.1</costPerBw>
+		<costPerSec>3.0</costPerSec>
+		<costPerMem>0.05</costPerMem>
+		<costPerStorage>0.1</costPerStorage>
+		
+		<!-- Location coordinates (meters) -->
+		<location>
+			<x_pos>200</x_pos>
+			<y_pos>100</y_pos>
+			<wlan_id>0</wlan_id>
+			<attractiveness>3</attractiveness>
+		</location>
+		
+		<hosts>
+			<!-- Host 1: GPU Server with NVIDIA T4 -->
+			<host>
+				<core>8</core>
+				<mips>20000</mips>
+				<ram>32768</ram> <!-- 32 GB RAM -->
+				<storage>1000000</storage> <!-- 1 TB -->
+				
+				<!-- GPU Specifications -->
+				<gpus>
+					<gpu>
+						<type>NVIDIA_T4</type>
+						<cudaCores>2560</cudaCores>
+						<gflops>8100</gflops> <!-- 8.1 TFLOPs FP32 -->
+						<memory>16384</memory> <!-- 16 GB GDDR6 -->
+						<bandwidth>320</bandwidth> <!-- 320 GB/s -->
+					</gpu>
+				</gpus>
+				
+				<!-- Virtual Machines -->
+				<VMs>
+					<!-- VM 1: GPU-enabled for ML Inference -->
+					<VM vmm="Xen" requiresGpu="true">
+						<core>4</core>
+						<mips>10000</mips>
+						<ram>16384</ram> <!-- 16 GB -->
+						<storage>500000</storage>
+					</VM>
+					
+					<!-- VM 2: CPU-only for lightweight tasks -->
+					<VM vmm="Xen" requiresGpu="false">
+						<core>4</core>
+						<mips>10000</mips>
+						<ram>16384</ram>
+						<storage>500000</storage>
+					</VM>
+				</VMs>
+			</host>
+		</hosts>
+	</datacenter>
+	
+	<!-- =========================================== -->
+	<!-- DATACENTER 2: Edge Server with NVIDIA A100  -->
+	<!-- Location: Business District (High Compute)  -->
+	<!-- =========================================== -->
+	<datacenter arch="x86" os="Linux" vmm="Xen">
+		<costPerBw>0.15</costPerBw>
+		<costPerSec>5.0</costPerSec>
+		<costPerMem>0.08</costPerMem>
+		<costPerStorage>0.15</costPerStorage>
+		
+		<location>
+			<x_pos>600</x_pos>
+			<y_pos>150</y_pos>
+			<wlan_id>1</wlan_id>
+			<attractiveness>4</attractiveness>
+		</location>
+		
+		<hosts>
+			<!-- Host 1: High-performance GPU Server with NVIDIA A100 -->
+			<host>
+				<core>16</core>
+				<mips>30000</mips>
+				<ram>65536</ram> <!-- 64 GB RAM -->
+				<storage>2000000</storage> <!-- 2 TB -->
+				
+				<gpus>
+					<gpu>
+						<type>NVIDIA_A100</type>
+						<cudaCores>6912</cudaCores>
+						<gflops>19500</gflops> <!-- 19.5 TFLOPs FP32 -->
+						<memory>40960</memory> <!-- 40 GB HBM2 -->
+						<bandwidth>1555</bandwidth> <!-- 1.5 TB/s -->
+					</gpu>
+				</gpus>
+				
+				<VMs>
+					<!-- VM 1: GPU-enabled for Deep Learning -->
+					<VM vmm="Xen" requiresGpu="true">
+						<core>8</core>
+						<mips>15000</mips>
+						<ram>32768</ram> <!-- 32 GB -->
+						<storage>1000000</storage>
+					</VM>
+					
+					<!-- VM 2: GPU-enabled for Scientific Computing -->
+					<VM vmm="Xen" requiresGpu="false">
+						<core>8</core>
+						<mips>15000</mips>
+						<ram>32768</ram>
+						<storage>1000000</storage>
+					</VM>
+				</VMs>
+			</host>
+		</hosts>
+	</datacenter>
+	
+	<!-- =========================================== -->
+	<!-- DATACENTER 3: Edge Server with Multiple T4 -->
+	<!-- Location: University Campus (AR/VR Apps)    -->
+	<!-- =========================================== -->
+	<datacenter arch="x86" os="Linux" vmm="Xen">
+		<costPerBw>0.1</costPerBw>
+		<costPerSec>3.5</costPerSec>
+		<costPerMem>0.06</costPerMem>
+		<costPerStorage>0.12</costPerStorage>
+		
+		<location>
+			<x_pos>1000</x_pos>
+			<y_pos>200</y_pos>
+			<wlan_id>2</wlan_id>
+			<attractiveness>3</attractiveness>
+		</location>
+		
+		<hosts>
+			<!-- Host 1: Multi-GPU Server with 2x NVIDIA T4 -->
+			<host>
+				<core>12</core>
+				<mips>25000</mips>
+				<ram>49152</ram> <!-- 48 GB RAM -->
+				<storage>1500000</storage> <!-- 1.5 TB -->
+				
+				<gpus>
+					<!-- GPU 1 -->
+					<gpu>
+						<type>NVIDIA_T4</type>
+						<cudaCores>2560</cudaCores>
+						<gflops>8100</gflops>
+						<memory>16384</memory>
+						<bandwidth>320</bandwidth>
+					</gpu>
+					
+					<!-- GPU 2 -->
+					<gpu>
+						<type>NVIDIA_T4</type>
+						<cudaCores>2560</cudaCores>
+						<gflops>8100</gflops>
+						<memory>16384</memory>
+						<bandwidth>320</bandwidth>
+					</gpu>
+				</gpus>
+				
+				<VMs>
+					<!-- VM 1: GPU-enabled for AR/VR Rendering -->
+					<VM vmm="Xen" requiresGpu="true">
+						<core>6</core>
+						<mips>12500</mips>
+						<ram>24576</ram> <!-- 24 GB -->
+						<storage>750000</storage>
+					</VM>
+					
+					<!-- VM 2: GPU-enabled for Video Processing -->
+					<VM vmm="Xen" requiresGpu="true">
+						<core>6</core>
+						<mips>12500</mips>
+						<ram>24576</ram>
+						<storage>750000</storage>
+					</VM>
+				</VMs>
+			</host>
+		</hosts>
+	</datacenter>
+	
+	<!-- =========================================== -->
+	<!-- DATACENTER 4: Edge Server - Entry Level    -->
+	<!-- Location: Suburban Area (Lower Traffic)     -->
+	<!-- =========================================== -->
+	<datacenter arch="x86" os="Linux" vmm="Xen">
+		<costPerBw>0.08</costPerBw>
+		<costPerSec>2.5</costPerSec>
+		<costPerMem>0.04</costPerMem>
+		<costPerStorage>0.08</costPerStorage>
+		
+		<location>
+			<x_pos>1400</x_pos>
+			<y_pos>50</y_pos>
+			<wlan_id>3</wlan_id>
+			<attractiveness>2</attractiveness>
+		</location>
+		
+		<hosts>
+			<!-- Host 1: Entry-level GPU Server with NVIDIA T4 -->
+			<host>
+				<core>4</core>
+				<mips>15000</mips>
+				<ram>16384</ram> <!-- 16 GB RAM -->
+				<storage>500000</storage> <!-- 500 GB -->
+				
+				<gpus>
+					<gpu>
+						<type>NVIDIA_T4</type>
+						<cudaCores>2560</cudaCores>
+						<gflops>8100</gflops>
+						<memory>16384</memory>
+						<bandwidth>320</bandwidth>
+					</gpu>
+				</gpus>
+				
+				<VMs>
+					<!-- VM 1: GPU-enabled for Image Processing -->
+					<VM vmm="Xen" requiresGpu="true">
+						<core>2</core>
+						<mips>7500</mips>
+						<ram>8192</ram> <!-- 8 GB -->
+						<storage>250000</storage>
+					</VM>
+					
+					<!-- VM 2: CPU-only for Web Services -->
+					<VM vmm="Xen" requiresGpu="false">
+						<core>2</core>
+						<mips>7500</mips>
+						<ram>8192</ram>
+						<storage>250000</storage>
+					</VM>
+				</VMs>
+			</host>
+		</hosts>
+	</datacenter>
+
+</edge_devices>

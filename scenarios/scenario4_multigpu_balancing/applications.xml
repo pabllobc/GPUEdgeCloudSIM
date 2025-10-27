@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<!--
+  GpuEdgeCloudSim v1.0 - Applications Configuration
+  
+  This file defines GPU-intensive applications and their characteristics:
+  - Machine Learning Inference (object detection, image classification)
+  - Video Processing (transcoding, filtering, rendering)
+  - Scientific Computing (simulations, matrix operations)
+  - Augmented Reality (AR/VR rendering)
+  - Image Processing (enhancement, recognition)
+  
+  Each application specifies:
+  - CPU requirements (task_length, required_core)
+  - GPU requirements (gpu_length, gpu_memory, gpu_input_data, gpu_output_data)
+  - Network characteristics (input/output file sizes)
+  - QoS parameters (delay_sensitivity, usage_percentage)
+  
+  Author: Pabllo Borges Cardoso
+  Date: October 23, 2025
+-->
+
+<applications>
+	
+	<!-- ========================================================= -->
+	<!-- APPLICATION 1: ML Inference - Object Detection           -->
+	<!-- Use Case: Real-time object detection from mobile cameras -->
+	<!-- Model: YOLOv5, ResNet, MobileNet                         -->
+	<!-- ========================================================= -->
+	<application name="ML_INFERENCE_OBJECT_DETECTION">
+		<!-- Percentage of devices using this application -->
+		<usage_percentage>30</usage_percentage>
+		
+		<!-- Probability of offloading to cloud instead of edge (%) -->
+		<prob_cloud_selection>10</prob_cloud_selection>
+		
+		<!-- Task arrival rate: Poisson interarrival time (seconds) -->
+		<poisson_interarrival>8</poisson_interarrival>
+		
+		<!-- Delay sensitivity: 0 (not sensitive) to 1 (highly sensitive) -->
+		<delay_sensitivity>0.7</delay_sensitivity>
+		
+		<!-- CPU Processing Requirements -->
+		<task_length>5000</task_length> <!-- Million Instructions -->
+		<required_core>1</required_core>
+		
+		<!-- Network Data Transfer -->
+		<input_file_size>2048</input_file_size> <!-- KB: Input image -->
+		<output_file_size>512</output_file_size> <!-- KB: Detection results -->
+		
+		<!-- GPU Processing Requirements -->
+		<gpu_length>250000</gpu_length> <!-- GFLOPs: ~250 GFLOPs for inference -->
+		<gpu_memory>4096</gpu_memory> <!-- MB: Model + Activations -->
+		<gpu_input_data>100</gpu_input_data> <!-- MB: Input tensor -->
+		<gpu_output_data>50</gpu_output_data> <!-- MB: Output predictions -->
+	</application>
+	
+	<!-- ========================================================= -->
+	<!-- APPLICATION 2: ML Inference - Image Classification       -->
+	<!-- Use Case: Real-time image classification for retail      -->
+	<!-- Model: EfficientNet, ResNet-50                           -->
+	<!-- ========================================================= -->
+	<application name="ML_INFERENCE_IMAGE_CLASS">
+		<usage_percentage>20</usage_percentage>
+		<prob_cloud_selection>15</prob_cloud_selection>
+		<poisson_interarrival>10</poisson_interarrival>
+		<delay_sensitivity>0.6</delay_sensitivity>
+		
+		<task_length>3000</task_length>
+		<required_core>1</required_core>
+		
+		<input_file_size>1536</input_file_size>
+		<output_file_size>256</output_file_size>
+		
+		<gpu_length>150000</gpu_length> <!-- ~150 GFLOPs -->
+		<gpu_memory>2048</gpu_memory> <!-- 2 GB -->
+		<gpu_input_data>75</gpu_input_data>
+		<gpu_output_data>25</gpu_output_data>
+	</application>
+	
+	<!-- ========================================================= -->
+	<!-- APPLICATION 3: Video Processing - Real-time Transcoding  -->
+	<!-- Use Case: Live video streaming with format conversion    -->
+	<!-- Resolution: 1080p → Multiple resolutions                 -->
+	<!-- ========================================================= -->
+	<application name="VIDEO_TRANSCODING">
+		<usage_percentage>15</usage_percentage>
+		<prob_cloud_selection>20</prob_cloud_selection>
+		<poisson_interarrival>15</poisson_interarrival>
+		<delay_sensitivity>0.8</delay_sensitivity>
+		
+		<task_length>8000</task_length>
+		<required_core>2</required_core>
+		
+		<input_file_size>10240</input_file_size> <!-- 10 MB: Video chunk -->
+		<output_file_size>5120</output_file_size> <!-- 5 MB: Transcoded -->
+		
+		<gpu_length>800000</gpu_length> <!-- ~800 GFLOPs for H.264 encoding -->
+		<gpu_memory>8192</gpu_memory> <!-- 8 GB -->
+		<gpu_input_data>512</gpu_input_data> <!-- 512 MB: Input frames -->
+		<gpu_output_data>256</gpu_output_data> <!-- 256 MB: Encoded video -->
+	</application>
+	
+	<!-- ========================================================= -->
+	<!-- APPLICATION 4: Video Processing - Real-time Filtering    -->
+	<!-- Use Case: Apply filters/effects to live video            -->
+	<!-- Effects: Beauty filters, background blur, AR overlays    -->
+	<!-- ========================================================= -->
+	<application name="VIDEO_FILTERING">
+		<usage_percentage>12</usage_percentage>
+		<prob_cloud_selection>5</prob_cloud_selection>
+		<poisson_interarrival>5</poisson_interarrival>
+		<delay_sensitivity>0.9</delay_sensitivity>
+		
+		<task_length>4000</task_length>
+		<required_core>1</required_core>
+		
+		<input_file_size>4096</input_file_size> <!-- 4 MB: Frame batch -->
+		<output_file_size>4096</output_file_size>
+		
+		<gpu_length>350000</gpu_length> <!-- ~350 GFLOPs -->
+		<gpu_memory>4096</gpu_memory>
+		<gpu_input_data>200</gpu_input_data>
+		<gpu_output_data>200</gpu_output_data>
+	</application>
+	
+	<!-- ========================================================= -->
+	<!-- APPLICATION 5: AR/VR Rendering                           -->
+	<!-- Use Case: Augmented reality applications                 -->
+	<!-- Examples: Pokemon GO, AR navigation, virtual try-on      -->
+	<!-- ========================================================= -->
+	<application name="AR_VR_RENDERING">
+		<usage_percentage>10</usage_percentage>
+		<prob_cloud_selection>8</prob_cloud_selection>
+		<poisson_interarrival>6</poisson_interarrival>
+		<delay_sensitivity>0.95</delay_sensitivity> <!-- Highly latency-sensitive -->
+		
+		<task_length>6000</task_length>
+		<required_core>2</required_core>
+		
+		<input_file_size>3072</input_file_size> <!-- 3 MB: Scene data -->
+		<output_file_size>2048</output_file_size> <!-- 2 MB: Rendered frame -->
+		
+		<gpu_length>500000</gpu_length> <!-- ~500 GFLOPs for ray tracing -->
+		<gpu_memory>6144</gpu_memory> <!-- 6 GB -->
+		<gpu_input_data>300</gpu_input_data>
+		<gpu_output_data>150</gpu_output_data>
+	</application>
+	
+	<!-- ========================================================= -->
+	<!-- APPLICATION 6: Scientific Computing - Matrix Operations  -->
+	<!-- Use Case: Scientific simulations, data analytics         -->
+	<!-- Examples: Weather forecasting, fluid dynamics            -->
+	<!-- ========================================================= -->
+	<application name="SCIENTIFIC_COMPUTING">
+		<usage_percentage>8</usage_percentage>
+		<prob_cloud_selection>40</prob_cloud_selection>
+		<poisson_interarrival>20</poisson_interarrival>
+		<delay_sensitivity>0.3</delay_sensitivity> <!-- Less latency-sensitive -->
+		
+		<task_length>10000</task_length>
+		<required_core>4</required_core>
+		
+		<input_file_size>20480</input_file_size> <!-- 20 MB: Input matrices -->
+		<output_file_size>10240</output_file_size> <!-- 10 MB: Results -->
+		
+		<gpu_length>2000000</gpu_length> <!-- ~2 TFLOPs for large matrix ops -->
+		<gpu_memory>16384</gpu_memory> <!-- 16 GB -->
+		<gpu_input_data>1024</gpu_input_data> <!-- 1 GB -->
+		<gpu_output_data>512</gpu_output_data> <!-- 512 MB -->
+	</application>
+	
+	<!-- ========================================================= -->
+	<!-- APPLICATION 7: Image Processing - Enhancement            -->
+	<!-- Use Case: Photo enhancement, super-resolution            -->
+	<!-- Examples: Image upscaling, noise reduction               -->
+	<!-- ========================================================= -->
+	<application name="IMAGE_ENHANCEMENT">
+		<usage_percentage>5</usage_percentage>
+		<prob_cloud_selection>25</prob_cloud_selection>
+		<poisson_interarrival>12</poisson_interarrival>
+		<delay_sensitivity>0.4</delay_sensitivity>
+		
+		<task_length>3500</task_length>
+		<required_core>1</required_core>
+		
+		<input_file_size>5120</input_file_size> <!-- 5 MB: Original image -->
+		<output_file_size>10240</output_file_size> <!-- 10 MB: Enhanced image -->
+		
+		<gpu_length>400000</gpu_length> <!-- ~400 GFLOPs -->
+		<gpu_memory>5120</gpu_memory> <!-- 5 GB -->
+		<gpu_input_data>250</gpu_input_data>
+		<gpu_output_data>500</gpu_output_data>
+	</application>
+
+</applications>

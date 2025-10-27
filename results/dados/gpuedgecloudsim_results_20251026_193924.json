@@ -1,0 +1,62 @@
+{
+  "scenario1_baseline": {
+    "avg_latency": 0.64263081646477,
+    "median_latency": 0.47355806891071844,
+    "std_latency": 0.5580070199713419,
+    "p95_latency": 1.767330649276942,
+    "p99_latency": 2.6703976923855555,
+    "avg_cpu_util": 84.97047920673025,
+    "avg_gpu_util": 0.0,
+    "total_energy": 2282385.0,
+    "avg_energy_per_task": 26.00712169553327,
+    "tasks_completed": 87760,
+    "tasks_failed": 2300,
+    "success_rate": 97.44614701310238,
+    "throughput": 146.26666666666668
+  },
+  "scenario2_gpu_basic": {
+    "avg_latency": 0.10901628556964765,
+    "median_latency": 0.08421390860047548,
+    "std_latency": 0.08874931349868809,
+    "p95_latency": 0.28568175012373476,
+    "p99_latency": 0.42311218327651917,
+    "avg_cpu_util": 17.498492075961398,
+    "avg_gpu_util": 82.49234389060705,
+    "total_energy": 1029114.0,
+    "avg_energy_per_task": 11.884905878276937,
+    "tasks_completed": 86590,
+    "tasks_failed": 2714,
+    "success_rate": 96.96094239899668,
+    "throughput": 144.31666666666666
+  },
+  "scenario3_hybrid": {
+    "avg_latency": 0.252327316777454,
+    "median_latency": 0.1828150565024183,
+    "std_latency": 0.22561383750133435,
+    "p95_latency": 0.7053895500876487,
+    "p99_latency": 1.0772918783927528,
+    "avg_cpu_util": 51.235417772725484,
+    "avg_gpu_util": 41.298430511917424,
+    "total_energy": 1405068.0,
+    "avg_energy_per_task": 15.992487878167042,
+    "tasks_completed": 87858,
+    "tasks_failed": 2533,
+    "success_rate": 97.1977298624863,
+    "throughput": 146.43
+  },
+  "scenario4_stress": {
+    "avg_latency": 0.10870739202963738,
+    "median_latency": 0.08428821648544389,
+    "std_latency": 0.08868664801346912,
+    "p95_latency": 0.2832494408794623,
+    "p99_latency": 0.4265255936153016,
+    "avg_cpu_util": 17.496226327641693,
+    "avg_gpu_util": 82.51933252170005,
+    "total_energy": 4070478.0,
+    "avg_energy_per_task": 11.893531788816718,
+    "tasks_completed": 342243,
+    "tasks_failed": 17686,
+    "success_rate": 95.08625312214353,
+    "throughput": 570.405
+  }
+}
